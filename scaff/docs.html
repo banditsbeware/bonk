@@ -7,12 +7,8 @@
   </head>
   <body>
     <h3>all docs</h3>
-    <ul>
-      <li>perhaps</li>
-      <li>a</li>
-      <li>list</li>
-      <li>of</li>
-      <li>docs</li>
-    </ul>
+    {% for post in posts %}
+    <p><a href='/docs/{{post.id}}'>{{ post.title }}</a></p>
+    {% endfor %}
   </body>
 </html>

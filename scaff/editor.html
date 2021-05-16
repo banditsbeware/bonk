@@ -1,0 +1,21 @@
+<!-- editor.html - for submitting a new post -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>post editor</title>
+    <link rel='stylesheet' href='{{ url_for("static", filename="styles.css") }}'>
+  </head>
+  <body>
+    <form action='/submit' method='post'>
+
+      <legend>submit a doc</legend>
+
+      <label for='title'>Title</label>
+      <input type='text' name='title'><br>
+
+      <label for='body'>Body</label>
+      <input type='text' name='body'><br>
+
+    </form>
+  </body>
+</html>
