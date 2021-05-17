@@ -7,8 +7,12 @@
   </head>
   <body>
     <h3>all docs</h3>
-    {% for post in posts %}
-    <p><a href='/docs/{{post.id}}'>{{ post.title }}</a></p>
-    {% endfor %}
+    {% if posts %}
+      {% for post in posts %}
+      <p><a href='/docs/{{post.id}}'>{{ post.title }}</a></p>
+      {% endfor %}
+    {% else %}
+      <p>no posts :(</p>
+    {% endif %}
   </body>
 </html>

@@ -2,10 +2,9 @@
 <!DOCTYPE html>
 <html>
   <title>#{{ ID }}</title>
-
+  <link rel='stylesheet' href='{{ url_for("static", filename="styles.css") }}'>
   <body>
     <h2>{{ TITLE }}</h2>
     <div>{{ TEXT }}</div>
   </body>
-
 </html>
