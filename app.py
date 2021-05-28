@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import database as db
 
 app = Flask(__name__, template_folder='scaff')
@@ -10,6 +10,25 @@ def index():
 @app.route('/editor')
 def editor():
     return render_template('editor.html')
+
+@app.route('/edit', methods=['POST'])
+def edit():
+    id = request.form.get('id', None)
+    if id == '': return render_template('editor.html',
+            error_msg='please enter an ID')
+
+    conn = db.connect()
+    post = db.fetch(conn, id)
+    try: 
+        return render_template('editor.html', 
+                title=post.title, 
+                body=post.body, 
+                tags=post.tags)
+
+    except AttributeError:
+        return render_template('editor.html', 
+                error_msg=f'no post found with ID {id}')
+
 
 @app.route('/docs')
 def docs():

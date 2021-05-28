@@ -1,12 +1,24 @@
 body {
-  margin: 0; padding: 0;
-  background-color: #99AA99;
-  text-align: center;
-  font-family: Times;
+  margin: 100px auto; padding: 0;
+  width: 50%;
+  background-color: #404e5c;
+  color: #b7c3f3;
 }
 
-form {
-  border: 1px solid gray;
+form { margin: 0; }
+
+fieldset { 
+  border: 3px inset #4f6272;
+  background-color: #303e4c;
 }
 
+textarea {
+  margin-top: 5px;
+  width: 98%;
+  padding: 5px;
+  border: none;
+  resize: none;
+  background-color: #4f6272;
+  color: #c7d3ff;
+}
 
