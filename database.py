@@ -23,19 +23,19 @@ class doc:
         id, title, date, body, tags, pub, views = res
         obj = cls(title, date, body, tags, pub, views)
         obj.id = id
-        print(obj)
         return obj
 
     def set_body(self, text): self.body = text
+    def set_id(self, id): self.id = id
 
     def save(self, conn):
-    # if self.id is None:
         t = datetime.datetime.now()
         tup = (self.title, t.strftime('%b %d, %Y'), self.body, self.tags, self.pub, self.views)
-        conn.execute('INSERT INTO docs (title, date, body, tags, pub, views) VALUES (?,?,?,?,?,?);', tup)
+        if self.id is None:
+            conn.execute('INSERT INTO docs (title, date, body, tags, pub, views) VALUES (?,?,?,?,?,?);', tup)
+        else:
+            conn.execute('UPDATE docs SET title=? date=? body=? tags=? pub=? views=? WHERE id=?', tup + (self.id,))
         conn.commit()
-    # else:
-        # UPDATE existing record 
 
     def __repr__(self): return f'[DOC "{self.title}" ({self.views} views)]'
 

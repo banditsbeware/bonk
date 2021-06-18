@@ -11,7 +11,7 @@
       <input type='number' name='id'
         style='color: #b7c3f3; background-color: #4f6272'>
       <input type='submit' value='edit'>
-      <span style='color: darkred'>{{ error_msg }}</span>
+      <span style='color: gray'>{{ msg }}</span>
     </form><br><br>
 
     <form action='/submit' method='post'><fieldset>
@@ -28,9 +28,8 @@
         placeholder='list|of|tags'>{{ tags }}</textarea>
 
       <div style='text-align: right'>
-        <label for='publish'>publish</label>
-        <input type='checkbox' name='publish' value='publish'><br>
-        <input type='submit' value='save'>
+        <input type='submit' name='save' value='save'>
+        <input type='submit' name='publish' value='publish'>
       </div>
 
     </fieldset></form>

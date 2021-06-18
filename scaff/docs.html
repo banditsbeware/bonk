@@ -9,6 +9,7 @@
     <h3>all docs</h3>
     {% if posts %}
       {% for post in posts %}
+      <!-- TODO: on hover, show post id -->
       <p><a href='/docs/{{post.id}}'>{{ post.title }}</a></p>
       {% endfor %}
     {% else %}

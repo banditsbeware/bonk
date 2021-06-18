@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, g
 import database as db
 
 app = Flask(__name__, template_folder='scaff')
@@ -13,9 +13,12 @@ def editor():
 
 @app.route('/edit', methods=['POST'])
 def edit():
+    # TODO: better checking here
     id = request.form.get('id', None)
     if id == '': return render_template('editor.html',
-            error_msg='please enter an ID')
+            msg='please enter an ID')
+
+    g.curr_id = id
 
     conn = db.connect()
     post = db.fetch(conn, id)
@@ -23,11 +26,34 @@ def edit():
         return render_template('editor.html', 
                 title=post.title, 
                 body=post.body, 
-                tags=post.tags)
+                tags= '' if post.tags is None else post.tags)
 
     except AttributeError:
+        g.pop('id')
         return render_template('editor.html', 
-                error_msg=f'no post found with ID {id}')
+                msg=f'no post found with ID {id}')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    rf = request.form
+    title = rf.get('title', None)
+    body  = rf.get('body', None)
+    tags  = rf.get('tags', None)
+
+    if rf.get('publish') is not None: publish = 1
+    if rf.get('save')    is not None: publish = 0
+
+    new_doc = db.doc(title=title, body=body, tags=tags, publish=publish)
+    
+    if 'id' in g: 
+        print('id is in g!')
+        new_doc.set_id(g.pop('id'))
+
+    conn = db.connect()
+    new_doc.save(conn)
+    posts = db.all_posts(conn)
+
+    return render_template('docs.html', posts=posts)
 
 
 @app.route('/docs')
