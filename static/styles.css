@@ -12,6 +12,17 @@ fieldset {
   background-color: #303e4c;
 }
 
+a, a:visited {
+  text-decoration: none;
+  color: #c7d3ff;
+}
+
+a:hover {
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
 textarea {
   margin-top: 5px;
   width: 98%;
@@ -21,4 +32,7 @@ textarea {
   background-color: #4f6272;
   color: #c7d3ff;
 }
+
+textarea:focus {
+  outline: none !important;
 
