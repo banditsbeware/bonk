@@ -11,6 +11,7 @@ def index():
 def editor():
     return render_template('editor.html')
 
+
 @app.route('/edit', methods=['POST'])
 def edit():
     # TODO: better checking here
@@ -18,18 +19,17 @@ def edit():
     if id == '': return render_template('editor.html',
             msg='please enter an ID')
 
-    g.curr_id = id
-
     conn = db.connect()
     post = db.fetch(conn, id)
     try: 
         return render_template('editor.html', 
+                id=id,
                 title=post.title, 
                 body=post.body, 
                 tags= '' if post.tags is None else post.tags)
 
     except AttributeError:
-        g.pop('id')
+        current_id = None
         return render_template('editor.html', 
                 msg=f'no post found with ID {id}')
 
@@ -39,16 +39,15 @@ def submit():
     title = rf.get('title', None)
     body  = rf.get('body', None)
     tags  = rf.get('tags', None)
+    id    = rf.get('id', None)
 
     if rf.get('publish') is not None: publish = 1
     if rf.get('save')    is not None: publish = 0
 
     new_doc = db.doc(title=title, body=body, tags=tags, publish=publish)
-    
-    if 'id' in g: 
-        print('id is in g!')
-        new_doc.set_id(g.pop('id'))
 
+    if id is not None: new_doc.set_id(id)
+    
     conn = db.connect()
     new_doc.save(conn)
     posts = db.all_posts(conn)

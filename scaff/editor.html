@@ -21,6 +21,8 @@
       <textarea rows='1' name='title' 
         placeholder='title'>{{ title }}</textarea>
 
+      {% if id %}<textarea hidden name='id'>{{ id }}</textarea>{% endif %}
+
       <textarea rows='40' name='body' 
         placeholder='body'>{{ body }}</textarea>
 

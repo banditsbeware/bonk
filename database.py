@@ -34,7 +34,7 @@ class doc:
         if self.id is None:
             conn.execute('INSERT INTO docs (title, date, body, tags, pub, views) VALUES (?,?,?,?,?,?);', tup)
         else:
-            conn.execute('UPDATE docs SET title=? date=? body=? tags=? pub=? views=? WHERE id=?', tup + (self.id,))
+            conn.execute('UPDATE docs SET title=?, date=?, body=?, tags=?, pub=?, views=? WHERE id=?', tup + (self.id,))
         conn.commit()
 
     def __repr__(self): return f'[DOC "{self.title}" ({self.views} views)]'
