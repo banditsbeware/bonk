@@ -1,20 +1,36 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, session
 import database as db
+import os
 
 app = Flask(__name__, template_folder='scaff')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', logged=session.get('logged_in'))
 
-@app.route('/editor')
+@app.route('/login', methods=['POST'])
+def login():
+    pw = request.form.get('pw')
+    if pw == 'Luminiferous20':
+        session['logged_in'] = True
+        return editor()
+    else:
+        return index()
+
+@app.route('/logout')
+def logout():
+    session['logged_in'] = False
+    return index()
+
+@app.route('/edit')
 def editor():
-    return render_template('editor.html')
+    if session.get('logged_in'):
+        return render_template('editor.html')
+    else:
+        return render_template('login.html')
 
-
-@app.route('/edit', methods=['POST'])
-def edit():
-    # TODO: better checking here
+@app.route('/load', methods=['POST'])
+def load():
     id = request.form.get('id', None)
     if id == '': return render_template('editor.html',
             msg='please enter an ID')
@@ -67,4 +83,6 @@ def doc(id):
     post = db.fetch(conn, id)
     return render_template('doc.html', ID=post.id, TITLE=post.title, TEXT=post.body)
 
-if __name__ == '__main__': app.run(port=3000)
+if __name__ == '__main__': 
+    app.secret_key = os.urandom(12)
+    app.run(port=3000)
