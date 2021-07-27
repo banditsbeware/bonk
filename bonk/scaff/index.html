@@ -6,9 +6,14 @@
     <link rel='stylesheet' href='{{ url_for("static", filename="styles.css") }}'> 
   </head>
   <body>
-    <h3>home</h3>
-    <a href='/docs'>docs</a>
-    <a href='/edit'>edit</a>
-    {% if logged %}<a href='/logout'>logout</a>{% endif %}
+
+    <h3>david rademacher</h3>
+
+    <ul>
+    {% for mat in mats %}
+      <li><a href='/mats/{{ mat }}'>{{ mat }}</a></li> 
+    {% endfor %}
+    </ul>
+
   </body>
 </html>
