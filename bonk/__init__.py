@@ -15,7 +15,7 @@ def create_app(test_config=None):
     else:
         app.config.from_mapping(test_config)
 
-    # ensire that instance folder exists
+    # ensure that instance folder exists
     try:
         os.makedirs(app.instance_path)
     except OSError:
@@ -23,5 +23,7 @@ def create_app(test_config=None):
 
     from . import routes
     app.register_blueprint(routes.router)
+
+    print(app.url_map)
 
     return app
