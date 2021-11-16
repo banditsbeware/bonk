@@ -1,21 +1,17 @@
+{% extends "root.html" %}
+
 <!-- index.html - landing page -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>bonk.life</title>
-    <link rel='stylesheet' href='{{ url_for("static", filename="styles.css") }}'> 
-  </head>
-  <body>
+{% block title %}bonk.life{% endblock %}
 
-    <img src='{{ url_for("static", filename="jet.gif") }}'>
+{% block body %}
 
-    <h3>david rademacher</h3>
+<img src='{{ url_for("static", filename="jet.gif") }}'>
 
-    <ul>
-    {% for mat in mats %}
-      <li><a href='/mats/{{ mat }}'>{{ mat }}</a></li> 
-    {% endfor %}
-    </ul>
+<h3>david rademacher</h3>
+<ul> {% for mat in mats %} <li><a href='/mats/{{ mat }}'>{{ mat }}</a></li> {% endfor %} </ul>
 
-  </body>
-</html>
+{% endblock %}
+
+{% block script %}
+<script src='{{ url_for("static", filename="animations/anim1.js") }}'></script>
+{% endblock %}

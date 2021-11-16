@@ -1,3 +1,4 @@
+html { overflow: hidden; }
 body {
   margin: 100px auto; padding: 0;
   width: 50%;
@@ -35,4 +36,4 @@ textarea {
 
 textarea:focus {
   outline: none !important;
-
+}
