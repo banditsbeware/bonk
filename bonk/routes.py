@@ -1,18 +1,16 @@
 from flask import Flask, Blueprint, render_template, request
 import os
 
-# router = Flask(__name__, template_folder='scaff')
+bp = Blueprint('bp', __name__, url_prefix='/')
 
-router = Blueprint('router', __name__, url_prefix='/')
-
-@router.route('/')
+@bp.route('/')
 def index():
     # get a list of file names
-    mats = os.listdir('bonk/scaff/mats')
+    mats = os.listdir('bonk/templates/materials')
     # strip ".html"
     mats = [ mat[:-5] for mat in mats ]
     return render_template('index.html', mats=mats)
 
-@router.route('/mats/<name>')
+@bp.route('/mats/<name>')
 def mat(name):
-    return render_template(f'mats/{name}.html')
+    return render_template(f'materials/{name}.html')
