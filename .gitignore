@@ -1,5 +1,5 @@
 wsgi.py
 __pycache__
-envy
+env
 .DS_Store
 instance
