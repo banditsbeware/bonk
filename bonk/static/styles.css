@@ -15,12 +15,11 @@ fieldset {
 
 a, a:visited {
   text-decoration: none;
-  color: #c7d3ff;
+  color: #d7e3ff;
 }
 
 a:hover {
   color: white;
-  font-weight: bold;
   transition: 0.2s;
 }
 
