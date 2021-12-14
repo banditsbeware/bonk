@@ -1,5 +1,5 @@
 from flask import Flask
-from .routes import bp
+from .blue import bp
 
 app = Flask(__name__)
 

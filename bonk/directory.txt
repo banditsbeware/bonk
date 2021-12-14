@@ -1,0 +1,4 @@
+2,science and engineering,20211101
+1,bayesian inference,20211115
+3,meta building,20211125
+4,creativity is spontaneous,20211202

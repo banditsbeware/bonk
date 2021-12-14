@@ -1,6 +1,5 @@
 {% extends "root.html" %}
 
-<!-- index.html - landing page -->
 {% block title %}bonk.life{% endblock %}
 
 {% block body %}
@@ -8,10 +7,6 @@
 <img src='{{ url_for("static", filename="jet.gif") }}'>
 
 <h3>david rademacher</h3>
-<ul> {% for mat in mats %} <li><a href='/mats/{{ mat }}'>{{ mat }}</a></li> {% endfor %} </ul>
+<ul> {% for id in dr %} <li><a href='/mat/{{ id }}'>{{ dr[id]["title"] }}</a></li> {% endfor %} </ul>
 
-{% endblock %}
-
-{% block script %}
-<script src='{{ url_for("static", filename="animations/anim1.js") }}'></script>
 {% endblock %}

@@ -7,7 +7,10 @@
   <title>{% block title %}{% endblock %}</title>
   <link rel='stylesheet' href='{{ url_for("static", filename="styles.css") }}'>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  <script src='{{ url_for("static", filename="three.js") }}'></script>
 </head>
-<body>{% block body %}{% endblock %}</body>
-{% block script %}{% endblock %}
+<body>
+  {% if back %} <a href='/'> &larr; home </a> {% endif %}
+  {% block body %}{% endblock %}</body>
+  <script src='{{ script }}'></script>
 </html>
