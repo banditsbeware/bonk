@@ -1,0 +1,12 @@
+{% extends "root.html" %}
+
+{% block title %}login!{% endblock %}
+
+{% block body %}
+<form method='POST'>
+  {{ form.csrf_token }}
+  {{ form.password.label }} {{ form.password( size=30 ) }}
+  {{ form.submit() }}
+</form>
+
+{% endblock %}

@@ -1,6 +1,24 @@
-from flask import Flask
-from .blue import bp
+import os
+from flask import Flask, Blueprint, render_template, request, make_response
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
-app = Flask(__name__)
+db = SQLAlchemy()
 
-app.register_blueprint(bp)
+login_manager = LoginManager()
+login_manager.session_protection = 'basic'
+login_manager.login_view = 'routes.login'
+
+def create_app():
+  app = Flask( __name__ )
+  app.config[ 'SQLALCHEMY_DATABASE_URI' ] = 'sqlite:///blog.sqlite3'
+  app.config[ 'SQLALCHEMY_TRACK_MODIFICATIONS' ] = False
+  app.config[ 'SECRET_KEY' ] = os.urandom( 32 )
+
+  db.init_app( app )
+  login_manager.init_app( app )
+
+  from .routes import routes
+  app.register_blueprint( routes, url_prefix='/' )
+
+  return app

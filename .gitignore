@@ -1,8 +1,9 @@
 wsgi.py
 __pycache__
 env
+config.py
 .DS_Store
 instance
 materials
 directory.txt
-three.js
+blog.sqlite3
