@@ -7,10 +7,15 @@
   <title>{% block title %}{% endblock %}</title>
   <link rel='stylesheet' href='{{ url_for("static", filename="styles.css") }}'>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-  <script src='{{ url_for("static", filename="three.js") }}'></script>
+
+  <!-- font awesome icons: https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free -->
+  <script src="https://kit.fontawesome.com/14107a141d.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-  {% if back %} <a href='/'> &larr; home </a> {% endif %}
+  <div>
+    {% if back %}<a style='float: left' href='/'> &larr; home </a> {% endif %}
+  </div>
   {% block body %}{% endblock %}</body>
   <script src='{{ script }}'></script>
 </html>

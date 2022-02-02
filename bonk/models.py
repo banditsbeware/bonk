@@ -21,11 +21,14 @@ from flask_login import UserMixin
 class User( UserMixin, db.Model ):
   __tablename__ = 'user'
   __table_args__ = { 'extend_existing': True }
-  uid           = db.Column( 'user_id', db.Integer, autoincrement=True, primary_key=True )
+  uid           = db.Column( 'id', db.Integer, autoincrement=True, primary_key=True )
   email         = db.Column( db.String( 40 ) )
   password      = db.Column( db.String( 20 ) )
   name          = db.Column( db.String( 20 ) )
   authenticated = db.Column( db.Boolean, default=False )
+
+  def get_id( self ):
+    return self.uid
 
   def __repr__( self ):
     return f'[User: "{ self.email }"]'
