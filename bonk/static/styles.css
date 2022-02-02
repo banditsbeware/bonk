@@ -2,19 +2,21 @@
 html { 
   overflow-x: hidden; 
   font-family: 'DM Mono'; 
-  font-size: .9em }
-body {
-  margin: 100px auto; padding: 0;
-  width: 60%;
-  background-color: #404e5c;
+  font-size: .9em;
   color: #b7c3f3;
 }
-
+body {
+  margin: 100px auto 20px auto; padding: 0;
+  width: 60%;
+  background-color: #404e5c;
+}
+form * {
+  margin: 5px 0;
+}
 a, a:visited {
   text-decoration: none;
   color: #d7e3ff;
 }
-
 a:hover {
   color: white;
   transition: 0.2s;

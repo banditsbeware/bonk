@@ -21,4 +21,7 @@ def create_app():
   from .routes import routes
   app.register_blueprint( routes, url_prefix='/' )
 
+  from .blog import blog
+  app.register_blueprint( blog, url_prefix='/' )
+
   return app
