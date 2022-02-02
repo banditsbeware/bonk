@@ -1,8 +1,29 @@
 {% extends "root.html" %}
-
 {% block title %}editor{% endblock %}
-
 {% block body %}
+
 <a style='float: right' href="/logout"><i class='fas fa-angry'></i> logout</a>
+
+<div style='float:left; margin-left: -200px; margin-top: 50px; height: 500px;'><ul>
+  {% for post in posts %} 
+    <li><a href='/edit/{{ post["bid"] }}'>{{ post["title"] }}</a></li> 
+  {% endfor %} 
+</ul></div>
+
+<form style='margin: 10px; border: 1px solid white' action='' method='POST'>
+
+  <input type='hidden' id='bid' name='bid' value='{% if editing %}{{ editing["bid"] }}{% endif %}'>
+  <input type='hidden' id='prevt' name='prevt' value='{% if editing %}{{ editing["title"] }}{% endif %}'>
+
+  <input id='title' name='title' placeholder='{% if editing %}{{ editing["title"] }}{% endif %}'>
+  <textarea id='editor' name='editor' rows='40' cols='100'>{% if editing %}{{ editing["body"] }}{% endif %}</textarea>
+
+  <label for="vis">visible?</label>
+  {% if editing and editing["visible"] == 1 %}
+    <input type='checkbox' id='vis' name='vis' checked>
+  {% else %} <input type='checkbox' id='vis' name='vis'> {% endif %}
+
+  <button type='submit' formaction='/save'>save</button>
+</form>
 
 {% endblock %}

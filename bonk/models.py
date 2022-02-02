@@ -1,13 +1,16 @@
 from datetime import datetime
 from bonk import db
+from sqlalchemy.sql import func, expression
 
 class BlogPost( db.Model ):
   __tablename__ = 'blogpost'
   __table_args__ = { 'extend_existing': True }
-  bid       = db.Column( 'blog_id', db.Integer, autoincrement=True, primary_key=True )
+  bid       = db.Column( db.Integer, autoincrement=True, primary_key=True )
   title     = db.Column( db.String(80), nullable=False )
   body      = db.Column( db.Text, nullable=False )
-  pub_date  = db.Column( db.DateTime, nullable=False, default=datetime.utcnow )
+  visible   = db.Column( db.Boolean, server_default=expression.false() )
+  published = db.Column( db.DateTime, nullable=False, server_default=func.now() )
+  updated   = db.Column( db.DateTime, onupdate=func.now() )
 
   def save( self ):
     db.session.add( self )

@@ -12,12 +12,11 @@ routes = Blueprint( 'routes', __name__ )
 
 @routes.route('/', methods=[ 'GET', 'POST' ] )
 def index():
-
   script = f'static/animations/{choice(os.listdir("bonk/static/animations"))}'
-  posts = BlogPost.query.all()
-
-  return render_template( 'index.html', posts=posts, script=script )
-
+  return render_template( 'index.html', 
+    posts=BlogPost.query.all(), 
+    script=script 
+  )
 
 @routes.route( '/login', methods=[ 'GET', 'POST' ] )
 def login():
@@ -35,8 +34,43 @@ def logout():
   logout_user()
   return redirect( '/' )
 
-
 @routes.route('/editor')
 @login_required
 def editor():
-  return render_template( f'editor.html', back=True )
+  posts = BlogPost.query.all()
+  return render_template( 'editor.html', 
+  back=True, 
+  posts=posts 
+)
+
+@routes.route( '/edit/<int:i>' )
+@login_required
+def edit( i ):
+  return render_template( 'editor.html', 
+    back=True, 
+    editing=BlogPost.query.get( i ), 
+    posts=BlogPost.query.all() 
+  )
+
+@routes.route( '/save', methods=['POST'] )
+@login_required
+def save():
+  bid = request.form.get( 'bid' )
+  txt = request.form.get( 'editor' )
+  ttl = request.form.get( 'title' ) or request.form.get( 'prevt' )
+
+  bp = BlogPost.query.get( bid ) if bid else BlogPost()
+  bp.title = ttl
+  bp.body = txt 
+  bp.visible = request.form.get( 'vis' ) is not None
+  bp.save()
+  return redirect( '/' )
+
+@routes.route( '/post/<int:i>' )
+def post( i ):
+  p = BlogPost.query.get( i )
+  return render_template( 'post.html', 
+    back=True, 
+    title=p.title, 
+    body=p.body 
+  )
