@@ -12,7 +12,7 @@ ctx = canvas[0].getContext('2d')
 
 const randInt = (l, h) => Math.floor( l + Math.random() * (h - l) )
 
-ctx.strokeStyle = '#b7c3f3'
+ctx.strokeStyle = '#fff'
 ctx.lineWidth = 1
 
 class Dot {

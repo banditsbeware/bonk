@@ -17,7 +17,7 @@ const randInt = (l, h) => Math.floor( l + Math.random() * (h - l) )
 var A, A0 = 20, k = 1/100, f = 3
 var step = 5
 
-ctx.strokeStyle = '#b7c3f3'
+ctx.strokeStyle = '#fff'
 ctx.lineWidth = 1
 
 let t, t0 = new Date()

@@ -7,7 +7,7 @@
 <a href='/editor'><img src='{{ url_for("static", filename="jet.gif") }}'></a>
 
 <h3>david rademacher</h3>
-<ul>
+<ul id='bloglist'>
   {% for post in posts %} 
     {% if post["visible"] == 1 %}
       <li><a href='/post/{{ post["bid"] }}'>{{ post["title"] }}</a></li> 

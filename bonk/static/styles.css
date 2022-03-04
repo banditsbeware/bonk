@@ -1,23 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap');
 html { 
   overflow-x: hidden; 
-  font-family: 'DM Mono'; 
+  font-family: 'JetBrains Mono'; 
   font-size: .9em;
-  color: #b7c3f3;
+  color: lightgray;
+  background-image: url('./flower 4k.jpg');
+  background-attachment: fixed;
+  background-position: center;
 }
 body {
-  margin: 100px auto 20px auto; padding: 0;
+  margin: 100px auto 20px auto; padding: 30px;
   width: 60%;
-  background-color: #404e5c;
+  background-color: #02020B;
+  border: 8px double white;
+}
+ul#bloglist {
+  list-style-image: url('file_lines-1.png');
+}
+ul#bloglist li {
+  margin-bottom: 5px;
 }
 form * {
   margin: 5px 0;
 }
-a, a:visited {
+a {
+  color: inherit;
   text-decoration: none;
-  color: #d7e3ff;
 }
 a:hover {
   color: white;
-  transition: 0.2s;
 }

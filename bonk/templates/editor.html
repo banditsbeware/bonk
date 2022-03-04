@@ -23,7 +23,9 @@
     <label for="vis">visible?</label>
     {% if editing and editing["visible"] == 1 %}
       <input type='checkbox' id='vis' name='vis' checked>
-    {% else %} <input type='checkbox' id='vis' name='vis'> {% endif %}
+    {% else %} 
+      <input type='checkbox' id='vis' name='vis'> 
+    {% endif %}
 
     <br><button type='submit' formaction='/save'>save</button>
     <button style='float:right; margin-right: 25px' type='submit' formaction='/delete'>delete</button>
