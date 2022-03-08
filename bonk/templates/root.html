@@ -13,7 +13,7 @@
 
 </head>
 <body>
-  {% if back %}<a href='/'><i class='fas fa-chevron-circle-left'></i> home </a> {% endif %}
+  {% if back %}<a id='back' href='/'><i class='fas fa-chevron-circle-left'></i> home </a> {% endif %}
   {% block body %}{% endblock %}
 </body>
   <script src='{{ script }}'></script>

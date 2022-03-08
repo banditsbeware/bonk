@@ -1,32 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap');
+* { cursor: url(Tailless.cur), auto; }
 html { 
   overflow-x: hidden; 
   font-family: 'JetBrains Mono'; 
-  font-size: .9em;
+  /* font-size: .9em; */
   color: lightgray;
-  background-image: url('./flower 4k.jpg');
+  background-image: url(flower.jpg);
   background-attachment: fixed;
   background-position: center;
 }
+
 body {
-  margin: 100px auto 20px auto; padding: 30px;
+  margin: 100px auto 200px auto; padding: 30px;
   width: 60%;
-  background-color: #02020B;
+  background-color: #1f2638;
   border: 8px double white;
+  box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.7); 
 }
-ul#bloglist {
-  list-style-image: url('file_lines-1.png');
+
+ul#bloglist li { 
+  list-style-type: none;
+  list-style-position: inside;
+  margin-bottom: 5px; 
+  background-image: url(file.png);
+  background-repeat: no-repeat;
+  padding-left: 25px;
+  background-position: 0 3px;
 }
-ul#bloglist li {
-  margin-bottom: 5px;
+
+form * { margin: 5px 0; }
+textarea, input { 
+  background-color: #1f2638;
+  color: lightgray;
 }
-form * {
-  margin: 5px 0;
-}
-a {
-  color: inherit;
+
+ul#bloglist a, a#back {
   text-decoration: none;
 }
+
+a { color: inherit; }
+
 a:hover {
   color: white;
 }

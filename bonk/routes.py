@@ -14,7 +14,7 @@ def index():
   script = f'static/animations/{choice(os.listdir("bonk/static/animations"))}'
   return render_template( 'index.html', 
     posts=BlogPost.query.all(), 
-    script=script 
+    # script=script 
   )
 
 @routes.route( '/login', methods=[ 'GET', 'POST' ] )
