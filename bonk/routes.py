@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, redirect, request, send_from_directory
 from random import choice
 
 from flask_login import current_user, login_required, login_user, logout_user
@@ -16,6 +16,10 @@ def index():
     posts=BlogPost.query.all(), 
     # script=script 
   )
+
+@routes.route( '/favicon.ico' )
+def favicon():
+  return send_from_directory( os.path.join( app.root_path, 'static' ), 'ntern.png' )
 
 @routes.route( '/login', methods=[ 'GET', 'POST' ] )
 def login():

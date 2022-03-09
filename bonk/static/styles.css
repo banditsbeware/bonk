@@ -1,8 +1,14 @@
-* { cursor: url(Tailless.cur), auto; }
+* { 
+  cursor: url(Tailless.cur), auto; 
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+*::-webkit-scrollbar { display: none; }
 html { 
+  height: 100vh;
   overflow-x: hidden; 
   font-family: 'JetBrains Mono'; 
-  /* font-size: .9em; */
+  font-size: .9em;
   color: lightgray;
   background-image: url(flower.jpg);
   background-attachment: fixed;
@@ -11,10 +17,43 @@ html {
 
 body {
   margin: 100px auto 200px auto; padding: 30px;
-  width: 60%;
+  width: 75%;
   background-color: #1f2638;
   border: 8px double white;
   box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.7); 
+  align-items: center;
+}
+
+h3 { 
+  animation: color-change 5s infinite; 
+  cursor: help; 
+}
+
+fieldset { 
+  margin-top: 30px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  border: 2px solid gray; 
+  background-color: #171e2c;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 300px;
+  display: inline-block;
+  vertical-align: top;
+}
+fieldset:hover { border: 2px solid aliceblue; }
+
+fieldset legend { 
+  border: 1px solid lightgray; 
+  padding: 5px;
+}
+
+fieldset li a {
+  text-decoration: none;
+}
+
+ul#bloglist { 
+  padding-left: 10px; 
 }
 
 ul#bloglist li { 
@@ -33,12 +72,19 @@ textarea, input {
   color: lightgray;
 }
 
-ul#bloglist a, a#back {
+fieldset a, a#back {
   text-decoration: none;
 }
 
 a { color: inherit; }
 
-a:hover {
-  color: white;
+a:hover { color: white; }
+
+@keyframes color-change {
+  0% { color: gray; }
+  50% { 
+    color: white; 
+    text-shadow: 2px 2px rgba(255, 255, 255, 0.3);
+  }
+  100% { color: gray; }
 }
