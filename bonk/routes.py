@@ -17,6 +17,11 @@ def index():
     # script=script 
   )
 
+@routes.route('/journal')
+def journal():
+  f = choice( os.listdir( 'bonk/static/journal' ) )
+  return render_template( 'journal.html', page=f )
+
 @routes.route( '/favicon.ico' )
 def favicon():
   return send_from_directory( os.path.join( app.root_path, 'static' ), 'ntern.png' )
